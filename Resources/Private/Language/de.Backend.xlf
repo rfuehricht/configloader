@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2023-10-06T11:42:00Z" product-name="EXT:configloader">
+        <header/>
+        <body>
+            <trans-unit id="settings.additionalFiles.label" xml:space="preserve">
+                <source>Additional configuration files to load. (Delimiter: ,)</source>
+                <target>Zusätzliche Konfigurationsdateien (getrennt durch: ,)</target>
+            </trans-unit>
+            <trans-unit id="settings.fileFormat.label" xml:space="preserve">
+                <source>Format of the configuration file(s)</source>
+                <target>Format der Konfigurationsdatei(en)</target>
+            </trans-unit>
+            <trans-unit id="settings.fileFormat.yaml.label" xml:space="preserve">
+                <source>YAML (requires https://github.com/symfony/Yaml)</source>
+                <target>YAML (benötigt https://github.com/symfony/Yaml)</target>
+            </trans-unit>
+            <trans-unit id="settings.fileName.label" xml:space="preserve">
+                <source>Name of the configuration file(s)</source>
+                <target>Name der Konfigurationsdatei(en)</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

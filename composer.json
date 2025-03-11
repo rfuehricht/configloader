@@ -1,0 +1,33 @@
+{
+  "name": "rfuehricht/configloader",
+  "type": "typo3-cms-extension",
+  "description": "Configuration Loader",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Reinhard Führicht",
+      "email": "r.fuehricht@gmail.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://composer.typo3.org/"
+    }
+  ],
+  "require": {
+    "php": "~8.2 || ~8.3",
+    "typo3/cms-backend": "~12.4 || ~13.4",
+    "hassankhan/config": "3.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Rfuehricht\\Configloader\\": "Classes/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "configloader"
+    }
+  }
+}

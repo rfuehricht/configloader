@@ -1,0 +1,20 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Rfuehricht\Configloader\:
+    resource: '../Classes/*'
+    autowire: true
+    public: true
+
+  Rfuehricht\Configloader\EventListener\CacheFlushListener:
+    tags:
+      - name: event.listener
+        identifier: 'theme/clear-configuration-cache'
+
+  Rfuehricht\Configloader\TypoScript\EventListener\GetConfigListener:
+    tags:
+      - name: event.listener
+        identifier: 'configloader/evaluate-getconfig-function'

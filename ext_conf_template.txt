@@ -1,0 +1,8 @@
+# cat=basic; type=options[JSON=.json,INI=.ini,XML=.xml,YAML=.yaml,LLL:EXT:configloader/Resources/Private/Language/Backend.xlf:settings.fileFormat.all.label=*]; label=LLL:EXT:configloader/Resources/Private/Language/Backend.xlf:settings.fileFormat.label
+fileFormat = .yaml
+
+# cat=basic; type=string; label=LLL:EXT:configloader/Resources/Private/Language/Backend.xlf:settings.fileName.label
+fileName = .settings
+
+# cat=basic; type=string; label=LLL:EXT:configloader/Resources/Private/Language/Backend.xlf:settings.additionalFiles.label
+additionalFiles =

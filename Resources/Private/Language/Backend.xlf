@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2023-10-06T11:42:00Z" product-name="EXT:configloader">
+        <header/>
+        <body>
+            <trans-unit id="settings.additionalFiles.label" xml:space="preserve">
+                <source>Additional configuration files to load. (Delimiter: ,)</source>
+            </trans-unit>
+            <trans-unit id="settings.fileFormat.label" xml:space="preserve">
+                <source>Format of the configuration file(s)</source>
+            </trans-unit>
+            <trans-unit id="settings.fileFormat.all.label" xml:space="preserve">
+                <source>All files with given name</source>
+            </trans-unit>
+            <trans-unit id="settings.fileName.label" xml:space="preserve">
+                <source>Name of the configuration file(s). Use "*" for loading all files or as a wildcard like ".config*" to load all files starting with a certain name.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
