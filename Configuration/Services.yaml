@@ -14,7 +14,7 @@ services:
       - name: event.listener
         identifier: 'theme/clear-configuration-cache'
 
-  Rfuehricht\Configloader\TypoScript\EventListener\GetConfigListener:
+  Rfuehricht\Configloader\EventListener\GetConfigListener:
     tags:
       - name: event.listener
         identifier: 'configloader/evaluate-getconfig-function'

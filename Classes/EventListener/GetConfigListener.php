@@ -1,11 +1,10 @@
 <?php
 
-namespace Rfuehricht\Configloader\TypoScript\EventListener;
+namespace Rfuehricht\Configloader\EventListener;
 
 use Rfuehricht\Configloader\Utility\ConfigurationUtility;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\TypoScript\AST\Event\EvaluateModifierFunctionEvent;
-use TYPO3\CMS\Core\Utility\DebugUtility;
 
 
 /**
@@ -15,6 +14,7 @@ use TYPO3\CMS\Core\Utility\DebugUtility;
  */
 #[AsEventListener(
     identifier: 'configloader/evaluate-getconfig-function',
+    event: EvaluateModifierFunctionEvent::class
 )]
 final class GetConfigListener
 {
@@ -27,12 +27,12 @@ final class GetConfigListener
 
     public function __invoke(EvaluateModifierFunctionEvent $event): void
     {
+
         if ($event->getFunctionName() === 'getConfig') {
 
             $functionArgument = $event->getFunctionArgument();
             $functionArgument = trim($functionArgument, "'");
             $value = $this->configurationUtility->get($functionArgument);
-
             $event->setValue($value);
 
 

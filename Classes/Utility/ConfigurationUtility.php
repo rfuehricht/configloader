@@ -13,7 +13,6 @@ use TYPO3\CMS\Core\Site\Entity\NullSite;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteInterface;
 use TYPO3\CMS\Core\Site\SiteFinder;
-use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ConfigurationUtility implements SingletonInterface
@@ -54,6 +53,7 @@ class ConfigurationUtility implements SingletonInterface
             return $configuration;
         }
 
+
         try {
             $fileFormat = $this->extensionConfiguration['fileFormat'] ?? '.json';
         } catch (Exception) {
@@ -72,10 +72,18 @@ class ConfigurationUtility implements SingletonInterface
         //Possibility to load all supported files in the given directories!
         $pattern = '';
         $defaultFileName = '';
-        if ($fileName === '*' && $fileFormat === '*') {
-            $pattern = '{,.}*{yaml,json,xml,ini}';
-        } elseif ($fileName === '*') {
-            $pattern = '{,.}*[!.]*' . $fileFormat;
+        if (str_contains($fileName, '*') && $fileFormat === '*') {
+            if ($fileName === '*') {
+                $pattern = '{,.}*{yaml,json,xml,ini}';
+            } else {
+                $pattern = $fileName . '{yaml,json,xml,ini}';
+            }
+        } elseif (str_contains($fileName, '*')) {
+            if ($fileName === '*') {
+                $pattern = '{,.}*[!.]*' . $fileFormat;
+            } else {
+                $pattern = $fileName . $fileFormat;
+            }
         } elseif ($fileFormat === '*') {
             $pattern = $fileName;
         } else {
@@ -121,7 +129,11 @@ class ConfigurationUtility implements SingletonInterface
         if (!($configuration = CacheUtility::get($cacheIdentifier))) {
             $possibleFiles = array_merge($possibleFiles, $additionalFiles);
             $configuration = Config::load($possibleFiles);
-            CacheUtility::set($cacheIdentifier, $configuration);
+            if ($configuration->valid()) {
+                CacheUtility::set($cacheIdentifier, $configuration);
+            } else {
+                throw new Exception('Configuration file not valid');
+            }
         }
         $configurations[$cacheIdentifier] = $configuration;
 
@@ -158,6 +170,9 @@ class ConfigurationUtility implements SingletonInterface
         return $configuration;
     }
 
+    /**
+     * @throws Exception
+     */
     public function get(string $key, ?string $alternative = ''): string|array|null
     {
         $site = (isset($GLOBALS['TYPO3_REQUEST']) ? $GLOBALS['TYPO3_REQUEST']->getAttribute('site') : null);
