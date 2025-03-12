@@ -47,6 +47,9 @@ There, you can adjust the default format and file name of configuration files.
 
 You can select to load all supported file formats and configure "*" as file name to load ALL available files in a folder.
 
+You can also use "*" as a wildcard in the file name setting.
+This way, it is possible to use separate configuration files for different groups of settings, e.g. .settings.pageIds.yaml and .settings.email.yaml and so on.
+
 The default file name and format loaded is `.settings.yaml`.
 
 ## Usage
@@ -127,17 +130,17 @@ In your custom PHP code, you can load and access the configuration using:
 use Rfuehricht\Configloader\Utility\ConfigurationUtility;
 ...
 
-class MyClass 
+class MyClass
 {
 
     public function __construct(
         protected ConfigurationUtility $configurationUtility
     )
     {}
-    
+
     public function myFunction(): void
     {
-        $configurationValue = $this->configurationUtility->get('typo3.setting');   
+        $configurationValue = $this->configurationUtility->get('typo3.setting');
     }
 
 }
@@ -147,5 +150,5 @@ In places without dependency injection (e.g. additional.php):
 
 ```
 $configurationUtility = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\Rfuehricht\Configloader\Utility\ConfigurationUtility::class);
-$configurationValue = $configurationUtility->get('typo3.setting');   
+$configurationValue = $configurationUtility->get('typo3.setting');
 ```

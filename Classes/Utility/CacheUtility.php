@@ -3,6 +3,7 @@
 namespace Rfuehricht\Configloader\Utility;
 
 use Noodlehaus\Config;
+use Noodlehaus\Writer\Serialize;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -12,10 +13,13 @@ class CacheUtility implements SingletonInterface
 
     static private string $cachePath = '';
 
-    static private function getCacheFilePath(string $key): string
+    static public function flush(): void
     {
         $cachePath = self::getCachePath();
-        return $cachePath . '/.' . $key;
+        if (file_exists($cachePath)) {
+            GeneralUtility::rmdir($cachePath, removeNonEmpty: true);
+        }
+        GeneralUtility::mkdir_deep($cachePath);
     }
 
     static private function getCachePath(): string
@@ -29,15 +33,6 @@ class CacheUtility implements SingletonInterface
         return self::$cachePath;
     }
 
-    static public function flush(): void
-    {
-        $cachePath = self::getCachePath();
-        if (file_exists($cachePath)) {
-            GeneralUtility::rmdir($cachePath, removeNonEmpty: true);
-        }
-        GeneralUtility::mkdir_deep($cachePath);
-    }
-
     static public function get(string $key): ?Config
     {
 
@@ -48,9 +43,15 @@ class CacheUtility implements SingletonInterface
         return null;
     }
 
+    static private function getCacheFilePath(string $key): string
+    {
+        $cachePath = self::getCachePath();
+        return $cachePath . '/.' . $key;
+    }
+
     static public function set(string $key, Config $value): void
     {
         $cacheFile = self::getCacheFilePath($key);
-        $value->toFile($cacheFile, new \Noodlehaus\Writer\Serialize());
+        $value->toFile($cacheFile, new Serialize());
     }
 }

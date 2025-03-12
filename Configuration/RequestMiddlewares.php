@@ -1,9 +1,11 @@
 <?php
 
+use Rfuehricht\Configloader\Middleware\LoadConfiguration;
+
 return [
     'frontend' => [
         'rfuehricht/configloader/load-configuration' => [
-            'target' => \Rfuehricht\Configloader\Middleware\LoadConfiguration::class,
+            'target' => LoadConfiguration::class,
             'after' => [
                 'typo3/cms-frontend/site',
             ],
@@ -14,7 +16,7 @@ return [
     ],
     'backend' => [
         'rfuehricht/configloader/load-configuration' => [
-            'target' => \Rfuehricht\Configloader\Middleware\LoadConfiguration::class,
+            'target' => LoadConfiguration::class,
             'after' => [
                 'typo3/cms-backend/site-resolver',
             ]

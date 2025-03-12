@@ -13,6 +13,7 @@ use TYPO3\CMS\Core\Site\Entity\NullSite;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteInterface;
 use TYPO3\CMS\Core\Site\SiteFinder;
+use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ConfigurationUtility implements SingletonInterface
@@ -117,6 +118,7 @@ class ConfigurationUtility implements SingletonInterface
                     $file = $projectPath . $file;
                 }
             }
+            unset($file);
             if (count($files) > 0 && strlen($files[0]) > 0) {
                 $additionalFiles = $files;
             }
@@ -128,12 +130,20 @@ class ConfigurationUtility implements SingletonInterface
         $cacheIdentifier = 'global';
         if (!($configuration = CacheUtility::get($cacheIdentifier))) {
             $possibleFiles = array_merge($possibleFiles, $additionalFiles);
-            $configuration = Config::load($possibleFiles);
-            if ($configuration->valid()) {
-                CacheUtility::set($cacheIdentifier, $configuration);
-            } else {
-                throw new Exception('Configuration file not valid');
+            foreach ($possibleFiles as $idx => $file) {
+                if (!file_exists($file)) {
+                    unset($possibleFiles[$idx]);
+                }
             }
+            if (!empty($possibleFiles)) {
+                $configuration = Config::load($possibleFiles);
+                if ($configuration->valid()) {
+                    CacheUtility::set($cacheIdentifier, $configuration);
+                } else {
+                    throw new Exception('Configuration file not valid');
+                }
+            }
+
         }
         $configurations[$cacheIdentifier] = $configuration;
 

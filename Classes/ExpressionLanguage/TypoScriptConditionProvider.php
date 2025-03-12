@@ -16,5 +16,5 @@ class TypoScriptConditionProvider extends AbstractProvider
             TypoScriptConditionFunctionsProvider::class
         ];
     }
-    
+
 }

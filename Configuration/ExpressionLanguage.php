@@ -1,7 +1,9 @@
 <?php
 
+use Rfuehricht\Configloader\ExpressionLanguage\TypoScriptConditionProvider;
+
 return [
     'typoscript' => [
-        \Rfuehricht\Configloader\ExpressionLanguage\TypoScriptConditionProvider::class
+        TypoScriptConditionProvider::class
     ]
 ];

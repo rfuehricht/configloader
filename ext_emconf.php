@@ -13,7 +13,7 @@ $EM_CONF['configloader'] = [
             'typo3' => '12.0.0-13.99.99'
         ],
         'conflicts' => [
-        ],
+        ]
     ],
     'uploadfolder' => 0,
     'createDirs' => '',
