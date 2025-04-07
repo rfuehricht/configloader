@@ -131,6 +131,7 @@ class ConfigurationUtility implements SingletonInterface
         if (!($configuration = CacheUtility::get($cacheIdentifier))) {
             $possibleFiles = array_merge($possibleFiles, $additionalFiles);
             foreach ($possibleFiles as $idx => $file) {
+                $file = ltrim($file, '?');
                 if (!file_exists($file)) {
                     unset($possibleFiles[$idx]);
                 }
