@@ -2,7 +2,7 @@
   "name": "rfuehricht/configloader",
   "type": "typo3-cms-extension",
   "description": "Configuration Loader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": [
     "GPL-3.0-or-later"
   ],
