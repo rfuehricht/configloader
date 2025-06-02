@@ -13,7 +13,6 @@ use TYPO3\CMS\Core\Site\Entity\NullSite;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteInterface;
 use TYPO3\CMS\Core\Site\SiteFinder;
-use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ConfigurationUtility implements SingletonInterface
@@ -25,7 +24,7 @@ class ConfigurationUtility implements SingletonInterface
     public function __construct()
     {
         $this->configurations = [];
-        $this->extensionConfiguration = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['configloader'];
+        $this->extensionConfiguration = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['configloader'] ?? [];
     }
 
     /**
