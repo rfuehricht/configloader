@@ -20,7 +20,7 @@
   ],
   "require": {
     "php": "~8.2 || ~8.3 || ~8.4",
-    "typo3/cms-backend": "~12.4 || ~13.4",
+    "typo3/cms-backend": "~12.4 || ~13.4 || ~14.3",
     "hassankhan/config": "~3.2"
   },
   "autoload": {

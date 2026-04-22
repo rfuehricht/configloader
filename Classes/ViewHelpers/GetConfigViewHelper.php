@@ -10,9 +10,8 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\Traits\CompileWithRenderStatic;
 
 final class GetConfigViewHelper extends AbstractViewHelper
 {
-    use CompileWithRenderStatic;
-    
-    public function initializeArguments()
+
+    public function initializeArguments(): void
     {
         $this->registerArgument(
             'key',
@@ -27,15 +26,10 @@ final class GetConfigViewHelper extends AbstractViewHelper
         );
     }
 
-    public static function renderStatic(
-        array                     $arguments,
-        \Closure                  $renderChildrenClosure,
-        RenderingContextInterface $renderingContext
-    )
+    public function render()
     {
-
         return GeneralUtility::makeInstance(ConfigurationUtility::class)
-            ->get($arguments['key'], ($arguments['alternative'] ?? ''));
+            ->get($this->arguments['key'], ($this->$arguments['alternative'] ?? ''));
 
     }
 }
