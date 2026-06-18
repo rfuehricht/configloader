@@ -4,13 +4,13 @@ $EM_CONF['configloader'] = [
     'title' => 'Configuration Loader',
     'description' => 'Makes it possible to load configuration files and access values in various locations.',
     'category' => 'misc',
-    'version' => '1.0.5',
+    'version' => '1.1.0',
     'state' => 'stable',
     'author' => 'Reinhard Führicht',
     'author_email' => 'r.fuehricht@gmail.com',
     'constraints' => [
         'depends' => [
-            'typo3' => '12.0.0-13.99.99'
+            'typo3' => '12.0.0-14.99.99'
         ],
         'conflicts' => [
         ]
