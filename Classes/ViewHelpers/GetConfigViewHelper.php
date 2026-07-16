@@ -29,7 +29,7 @@ final class GetConfigViewHelper extends AbstractViewHelper
     public function render()
     {
         return GeneralUtility::makeInstance(ConfigurationUtility::class)
-            ->get($this->arguments['key'], ($this->$arguments['alternative'] ?? ''));
+            ->get($this->arguments['key'], ($this->arguments['alternative'] ?? ''));
 
     }
 }
